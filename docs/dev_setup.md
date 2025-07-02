@@ -8,8 +8,23 @@ This document details how to set up a RimWorld Multiplayer development environme
 
 If you wish to have the option to play a "pristine" copy of the game, it is best to have a separate copy for development.
 
+:::spoiler Windows Instructions
+
 1. Navigate to your `steamapps\common` directory.
+    - If you haven't changed the default library location in Steam this will be:  
+    `C:\Program Files (x86)\Steam\steamapps\common`
 1. Copy the existing installation directory from `RimWorld` to `RimWorldDev`
+
+:::
+
+:::spoiler Mac Instructions
+
+1. Navigate to your `steamapps\common` directory.
+    - If you haven't changed the default library location in Steam this will be:  
+    `/Users/[username]/Library/Application Support/Steam/steamapps/common/`.
+1. Copy the existing installation directory from `RimWorld` to `RimWorldDev`
+
+:::
 
 > **Note:** You can do this multiple times, for example if you wanted a v1.6 Rimworld and a v1.5 Rimworld to do development in both environments.
 
@@ -24,12 +39,38 @@ These instructions allow you to maintain separate game environments between "pri
 1. The game ships with a README file (`steamapps\common\RimWorld\Readme.txt`)
 1. This file details a command-line switch to specify to the game where to store save files _and config_.
     - **Note:** The file also details a `-quicktest` option to fast-load into a tiny map.
-1. Create a shortcut to the executable (`RimWorldWin64.exe`), and edit the shortcut details.
-1. After the target add the following text: ` -savedatafolder=DevSaveData`
+
+:::spoiler Windows instructions
+
+- Create a shortcut to the executable (`RimWorldWin64.exe`), and edit the shortcut details.
+- After the target add the following text: ` -savedatafolder=DevSaveData`
     - The target should now look like:  
     ![Screenshot of shortcut properties](https://i.imgur.com/y32RP4f.png)
     - This specifies to save the config and games in a directory named `DevSaveData` in the same folder as the executable, eg `steamapps\common\RimWorldDev\DevSaveData`
 
+:::
+
+:::spoiler Mac instructions
+
+You can run the file from the command line and specify switches with a command like:  
+```sh
+open -na /Users/[username]/Library/Application\ Support/Steam/steamapps/common/RimWorldDev/RimWorldMac.app --args -savedatafolder=DevSaveData
+```
+And if you're comfortable with Mac/Linux, you can make a shell script out of this easily enough. However many people may want a "shortcut" icon.
+
+- Launch Automator
+- Choose the "Application" type
+- Add the Action "Library" > "Utilities" > "Run Shell Script"
+- Set the Shell to `/bin/bash`
+- Enter the following as your script:  
+    ```sh
+    open -na /Users/[username]/Library/Application\ Support/Steam/steamapps/common/RimWorldDev/RimWorldMac.app --args -savedatafolder=DevSaveData
+    ```
+- Save this as an Application, eg "RimWorldDev"
+
+You can now add the new "Application" to your dock or desktop.
+
+:::
 
 ## Clone Multiplayer Mod
 
@@ -38,8 +79,9 @@ These instructions allow you to maintain separate game environments between "pri
 1. Navigate to your local game mods directory (eg `steamapps\common\RimWorldDev\Mods`)
 1. Clone your code repository here (eg `RimWorldDev\Mods\Multiplayer`)  
     > **Note:** The build steps assume this relative location and copy binaries accordingly. Otherwise paths will need to be updated and/or binaries moved after each build.
-1. Contrary to the [documentation](https://github.com/rwmt/Multiplayer/blob/master/CONTRIBUTORS.md), __do not__ base your work off the `development` branch. It is well and truly out of date.
+1. While the GitHub [documentation](https://github.com/rwmt/Multiplayer/blob/master/CONTRIBUTORS.md) still refers to `development`, make sure to base your branch off `dev`.
 1. Copy the `Languages` folder from an original mod installation (eg `steamapps\workshop\content\294100\2606448745\1.5\Languages`) to your mod folder (`steamapps\common\RimWorldDev\Mods\Multiplayer\Languages`)
+    > This could be resolved by cloning the repository with [submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules), but it's outside the scope of this guide.
 
 If you navigate to the `Multiplayer\Source` directory you should be able to build the solution now.
 
