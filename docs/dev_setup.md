@@ -4,6 +4,8 @@ This document details how to set up a RimWorld Multiplayer development environme
 
 > **Note:** This guide is written for Visual Studio Code in Windows.  If you want to use another IDE or OS, YMMV.
 
+> **Note:** While you can't compile this project on Mac (due to .NET Framework dependencies), Mac instructions are included for testing purposes.
+
 ## (Optional) Duplicated game installations
 
 If you wish to have the option to play a "pristine" copy of the game, it is best to have a separate copy for development.
@@ -23,6 +25,7 @@ If you wish to have the option to play a "pristine" copy of the game, it is best
     - If you haven't changed the default library location in Steam this will be:  
     `/Users/[username]/Library/Application Support/Steam/steamapps/common/`.
 1. Copy the existing installation directory from `RimWorld` to `RimWorldDev`
+1. If Rimworld is not launched through Steam, it cannot connect to the Steam API, and things like workshop mods are unavailable. To resolve this create a file `steam_appid.txt` with contents `294100` in the `/steamapps/common/RimWorldDev` directory, alongside `RimWorldMac.app`
 
 :::
 
