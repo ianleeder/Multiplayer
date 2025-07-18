@@ -81,12 +81,19 @@ You can now add the new "Application" to your dock or desktop.
 
 1. Navigate to your local game mods directory (eg `steamapps\common\RimWorldDev\Mods`)
 1. Clone your code repository here (eg `RimWorldDev\Mods\Multiplayer`)  
-    > **Note:** The build steps assume this relative location and copy binaries accordingly. Otherwise paths will need to be updated and/or binaries moved after each build.
-1. While the GitHub [documentation](https://github.com/rwmt/Multiplayer/blob/master/CONTRIBUTORS.md) still refers to `development`, make sure to base your branch off `dev`.
-1. Copy the `Languages` folder from an original mod installation (eg `steamapps\workshop\content\294100\2606448745\1.5\Languages`) to your mod folder (`steamapps\common\RimWorldDev\Mods\Multiplayer\Languages`)
-    > This could be resolved by cloning the repository with [submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules), but it's outside the scope of this guide.
-
-If you navigate to the `Multiplayer\Source` directory you should be able to build the solution now.
+    > **Note:** The build steps assume this relative location and copy binaries accordingly. Otherwise paths will need to be updated and/or binaries moved after each build.  
+    > **Note:** While the GitHub [documentation](https://github.com/rwmt/Multiplayer/blob/master/CONTRIBUTORS.md) still refers to `development`, make sure to base your branch off `dev`.
+    - The language files are maintained in a [separate repository](https://github.com/rwmt/Multiplayer-Locale), but are linked to this repo as a "[git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)".
+    - If you are cloning the `Multiplayer` repository for the first time, add the `--recursive` switch to your clone command, eg:  
+        ```
+        git clone --recursive git@github.com:rwmt/Multiplayer.git
+        ```
+    - If you have already cloned the `Multiplayer` repository, you can fetch the Language files using the following command:  
+        ```
+        git submodule update --init --recursive
+        ```
+    - Alternatively you can copy the language files manually. Copy the `Languages` folder from an original mod installation (eg `steamapps\workshop\content\294100\2606448745\1.5\Languages`) to your mod folder (`steamapps\common\RimWorldDev\Mods\Multiplayer\Languages`)
+1. If you navigate to the `Multiplayer\Source` directory you should be able to build the solution now.
 
 The `Source\Client\Multiplayer.csproj` specifies to copy the compiled files back to the Mod directories `Assemblies` and `AssembliesCustom` as a build action.
 
