@@ -4,7 +4,7 @@ This document details how to set up a RimWorld Multiplayer development environme
 
 > **Note:** This guide is written for Visual Studio Code in Windows.  If you want to use another IDE or OS, YMMV.
 
-> **Note:** While you can't compile this project on Mac (due to .NET Framework dependencies), Mac instructions are included for testing purposes.
+To build ensure you have .NET 8 or higher installed.
 
 ## (Optional) Duplicated game installations
 
@@ -101,7 +101,7 @@ Technically you can edit the code to make changes, build and RimWorld will respe
 
 ## Debugging
 
-Some guides specify to install a specific `mono-2.0-bdwgc.dll`, but I found them to all be out of date. Below is an alternative that I got working.
+The below instructions only apply to Windows.
 
 ### dnSpy
 
