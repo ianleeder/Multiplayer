@@ -17,3 +17,4 @@ public static class ScribeLike
         public abstract void Look<T>(ref T value, string label, T defaultValue, bool forceSave);
     }
 }
+
